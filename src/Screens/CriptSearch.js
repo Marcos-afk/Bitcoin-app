@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Coin from '../Components/Cript'
 
 function CriptSearch(){
 
     const[coins, setCoins] = useState([])
-    const [search, setSearch] = useState('')
-
+  
     useEffect(() =>{
         axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false').then( response =>{
             setCoins(response.data)
@@ -15,29 +13,35 @@ function CriptSearch(){
         })
     }, [])
 
-    const filteredCoins = coins.filter( coin => coin.name.toLowerCase().includes(search.toLowerCase()))
     return(
               <div className="coin-app">
-                  <div className="coin-search">
-                      <h1 className="coin-text">Pesquisar</h1>
-                      <form>
-                          <input type="text"  className='coin-input' placeholder="Pesquisar" onChange={e => { setSearch(e.target.value)}}/>
-                      </form>
-
-                  </div>
                   {
-                      filteredCoins.map( coin => {
+                      coins.map( coin => {
                           return(
-                          <Coin 
-                          key={coin.id}
-                          name={coin.name}
-                          price={coin.current_price}
-                          symbol={coin.symbol}
-                          marketcap={coin.total_volume}
-                          volume={coin.market_cap}
-                          image={coin.image}
-                          priceChange={coin.price_change_percentage_24h}
-                          />
+                            <div className='coin-container' key={coin.id}>
+                            <div className='coin-row'>
+                              <div className='coin'>
+                                <img src={coin.image} alt={coin.name} />
+                                <h1>{coin.name}</h1>
+                                <p className='coin-symbol'>{coin.symbol}</p>
+                              </div>
+                              <div className='coin-data'>
+                                <p className='coin-price'>US${coin.current_price}</p>
+                                <p className='coin-volume'>US${coin.total_volume.toLocaleString()}</p>
+                      
+                                {coin.price_change_percentage_24h < 0 ? (
+                                  <p className='coin-percent red'>{coin.price_change_percentage_24h.toFixed(2)}%</p>
+                                ) : (
+                                  <p className='coin-percent green'>{coin.price_change_percentage_24h.toFixed(2)}%</p>
+                                )}
+                      
+                                <p className='coin-marketcap'>
+                                  Mkt Cap: US${coin.market_cap.toLocaleString()}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        
                       )})
                   }
               </div>
@@ -46,3 +50,5 @@ function CriptSearch(){
 }
 
 export default CriptSearch
+
+

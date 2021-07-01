@@ -299,7 +299,7 @@ width: 12rem;
 }
 
 .coin-price{
-  width: 10rem;
+  width: 12rem;
 }
 
 .coin-volume{
@@ -329,32 +329,3 @@ width: 12rem;
   margin-top: 2rem;
 }
 
-.coin-search{
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center ;
-}
-
-.coin-text{
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.coin-input{
-  border-radius: 2rem;
-  border: 0 none;
-  padding: 2rem;
-  width: 50rem;
-}
-
-.coin-input:focus {
-  box-shadow: 0 0 0 0;
-  border: 0 none;
-  outline: 0;
-} 
-
-.coin-input::placeholder {
-  color: #e2e2e2;
-}
