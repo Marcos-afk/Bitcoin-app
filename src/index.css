@@ -258,6 +258,7 @@ video.videos:hover{
 .coin-container{
   display: flex;
   justify-content: center;
+  margin-left: 3rem;
 }
 
 .coin-row{
@@ -327,5 +328,10 @@ width: 12rem;
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
+}
+
+.coin-app button{
+  width: 30%;
+  margin-bottom: 2rem;
 }
 

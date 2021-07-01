@@ -4,17 +4,24 @@ import axios from 'axios'
 function CriptSearch(){
 
     const[coins, setCoins] = useState([])
-  
     useEffect(() =>{
         axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false').then( response =>{
             setCoins(response.data)
         }).catch(error =>{
             alert('Ocorreu uma exceção : ' + error)
         })
+
+  
     }, [])
 
+    const AttHandle = () =>{
+      document.location.href = '/cript-list'
+    }
+
     return(
+      <div>
               <div className="coin-app">
+              <button onClick={AttHandle} className="button-color">Atualizar</button>
                   {
                       coins.map( coin => {
                           return(
@@ -44,6 +51,7 @@ function CriptSearch(){
                         
                       )})
                   }
+              </div>
               </div>
               
     )
